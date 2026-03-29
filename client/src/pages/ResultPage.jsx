@@ -53,9 +53,16 @@ const ResultPage = () => {
           >
             ✅ Plan Generated Successfully
           </div>
-          <h1 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '6px' }}>
-            Your <span className="gradient-text">Study Plan</span> is Ready!
-          </h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '6px' }}>
+            <img
+              src="/Syllabus2Success.png"
+              alt="Syllabus2Success"
+              style={{ height: '44px', width: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 2px 10px rgba(99,102,241,0.3))' }}
+            />
+            <h1 style={{ fontSize: '1.8rem', fontWeight: 800, margin: 0 }}>
+              Your <span className="gradient-text">Study Plan</span> is Ready!
+            </h1>
+          </div>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
             {daysAvailable} days until your exam · {plan.length} day plan generated
           </p>
@@ -148,7 +155,7 @@ const ResultPage = () => {
         }}
       >
         <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '0.95rem' }}>
-          Need a different plan? Adjust your inputs and regenerate.
+          Need a different plan? Head back and let <strong>Syllabus2Success</strong> generate a new one for you.
         </p>
         <button
           onClick={() => navigate('/generate')}

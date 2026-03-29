@@ -18,7 +18,7 @@ const App = () => {
           path="*"
           element={
             <div style={{ textAlign: 'center', padding: '80px 24px' }}>
-              <div style={{ fontSize: '4rem', marginBottom: '16px' }}>🔍</div>
+              <img src="/Syllabus2Success.png" alt="Syllabus2Success" style={{ height: '80px', objectFit: 'contain', marginBottom: '24px', opacity: 0.7 }} />
               <h2 style={{ fontWeight: 700, marginBottom: '12px' }}>Page Not Found</h2>
               <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>
                 The page you're looking for doesn't exist.

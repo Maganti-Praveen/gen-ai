@@ -12,22 +12,26 @@ const Loader = ({ message = 'AI is generating your study plan...' }) => {
         gap: '24px',
       }}
     >
-      {/* Animated brain icon */}
-      <div style={{ position: 'relative', width: '80px', height: '80px' }}>
+      {/* Animated logo */}
+      <div style={{ position: 'relative', width: '100px', height: '100px' }}>
         <div
           style={{
-            width: '80px',
-            height: '80px',
+            width: '100px',
+            height: '100px',
             borderRadius: '50%',
-            background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
+            background: 'rgba(26,26,46,0.9)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '32px',
             animation: 'pulse-glow 1.5s ease-in-out infinite',
+            padding: '10px',
           }}
         >
-          🧠
+          <img
+            src="/Syllabus2Success.png"
+            alt="Syllabus2Success"
+            style={{ width: '80px', height: '80px', objectFit: 'contain' }}
+          />
         </div>
         {/* Spinning ring */}
         <div
@@ -51,7 +55,7 @@ const Loader = ({ message = 'AI is generating your study plan...' }) => {
           {message}
         </p>
         <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-          Analyzing syllabus and crafting your personalized plan...
+          Syllabus2Success is analyzing your syllabus and building your plan...
         </p>
       </div>
 

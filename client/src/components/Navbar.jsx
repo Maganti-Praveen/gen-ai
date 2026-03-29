@@ -3,14 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const location = useLocation();
-
   const isActive = (path) => location.pathname === path;
 
   return (
     <nav
       style={{
-        background: 'rgba(15,15,26,0.85)',
-        backdropFilter: 'blur(12px)',
+        background: 'rgba(15,15,26,0.90)',
+        backdropFilter: 'blur(14px)',
         borderBottom: '1px solid var(--border)',
         position: 'sticky',
         top: 0,
@@ -25,36 +24,30 @@ const Navbar = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          height: '64px',
+          height: '68px',
         }}
       >
         {/* Logo */}
-        <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div
+        <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+          <img
+            src="/Syllabus2Success.png"
+            alt="Syllabus2Success"
             style={{
-              width: '36px',
-              height: '36px',
-              borderRadius: '10px',
-              background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '18px',
+              height: '48px',
+              width: 'auto',
+              objectFit: 'contain',
+              filter: 'drop-shadow(0 0 8px rgba(99,102,241,0.25))',
+              transition: 'filter 0.3s ease, transform 0.3s ease',
             }}
-          >
-            🧠
-          </div>
-          <span
-            style={{
-              fontWeight: 800,
-              fontSize: '1.1rem',
-              background: 'linear-gradient(135deg, #6366f1, #06b6d4)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
+            onMouseEnter={(e) => {
+              e.target.style.filter = 'drop-shadow(0 0 14px rgba(99,102,241,0.5))';
+              e.target.style.transform = 'scale(1.04)';
             }}
-          >
-            StudyPlanAI
-          </span>
+            onMouseLeave={(e) => {
+              e.target.style.filter = 'drop-shadow(0 0 8px rgba(99,102,241,0.25))';
+              e.target.style.transform = 'scale(1)';
+            }}
+          />
         </Link>
 
         {/* Nav Links */}
@@ -72,7 +65,7 @@ const NavLink = ({ to, label, active, highlight }) => (
     to={to}
     style={{
       textDecoration: 'none',
-      padding: '8px 16px',
+      padding: '8px 18px',
       borderRadius: '10px',
       fontWeight: 600,
       fontSize: '0.9rem',
@@ -83,13 +76,12 @@ const NavLink = ({ to, label, active, highlight }) => (
         ? 'rgba(99,102,241,0.15)'
         : 'transparent',
       color: highlight ? '#fff' : active ? 'var(--primary)' : 'var(--text-muted)',
-      border: highlight ? 'none' : '1px solid transparent',
     }}
     onMouseEnter={(e) => {
-      if (!highlight) e.target.style.color = 'var(--text-primary)';
+      if (!highlight) e.currentTarget.style.color = 'var(--text-primary)';
     }}
     onMouseLeave={(e) => {
-      if (!highlight) e.target.style.color = active ? 'var(--primary)' : 'var(--text-muted)';
+      if (!highlight) e.currentTarget.style.color = active ? 'var(--primary)' : 'var(--text-muted)';
     }}
   >
     {label}

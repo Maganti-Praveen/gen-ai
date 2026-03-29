@@ -33,12 +33,16 @@ const GeneratePage = () => {
     <div style={{ maxWidth: '760px', margin: '0 auto', padding: '40px 24px 80px' }}>
       {/* Page Header */}
       <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-        <div style={{ fontSize: '3rem', marginBottom: '12px' }}>✨</div>
+        <img
+          src="/Syllabus2Success.png"
+          alt="Syllabus2Success"
+          style={{ height: '72px', width: 'auto', objectFit: 'contain', marginBottom: '18px', filter: 'drop-shadow(0 4px 18px rgba(99,102,241,0.3))' }}
+        />
         <h1 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '10px' }}>
           Generate Your <span className="gradient-text">Study Plan</span>
         </h1>
         <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: 1.6 }}>
-          Fill in the details below and Gemini AI will craft a personalized day-wise study schedule for you.
+          Fill in the details below and our AI will craft a personalized day-wise study schedule for you.
         </p>
       </div>
 
@@ -63,7 +67,7 @@ const GeneratePage = () => {
             <strong>Error:</strong> {error}
             {error.includes('API key') && (
               <p style={{ marginTop: '6px', fontSize: '0.82rem', color: '#fca5a5' }}>
-                Make sure your GEMINI_API_KEY is set correctly in server/.env
+                Make sure your NVIDIA_API_KEY is set correctly in server/.env
               </p>
             )}
           </div>
@@ -93,7 +97,7 @@ const GeneratePage = () => {
           }}
         >
           <p style={{ fontWeight: 700, color: 'var(--secondary)', marginBottom: '10px', fontSize: '0.9rem' }}>
-            💡 Tips for best results
+            💡 Syllabus2Success Tips
           </p>
           <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '6px' }}>
             {[
