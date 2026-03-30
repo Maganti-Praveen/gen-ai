@@ -20,7 +20,10 @@ const GeneratePage = () => {
         res = await generatePlanFromText(payload);
       }
       const { plan, id, daysAvailable } = res.data;
-      navigate('/result', { state: { plan, planId: id, daysAvailable } });
+      const difficulty = isFormData ? (payload.get?.('difficulty') || 'medium') : (payload.difficulty || 'medium');
+      const hoursPerDay = isFormData ? (payload.get?.('hoursPerDay') || 3) : (payload.hoursPerDay || 3);
+      const examDate = isFormData ? (payload.get?.('examDate') || '') : (payload.examDate || '');
+      navigate('/result', { state: { plan, planId: id, daysAvailable, difficulty, hoursPerDay, examDate } });
     } catch (err) {
       const msg = err.response?.data?.error || err.message || 'Failed to generate plan. Please try again.';
       setError(msg);

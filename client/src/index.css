@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
@@ -39,7 +39,7 @@ body {
 /* Glassmorphism card */
 .glass-card {
   background: rgba(26, 26, 46, 0.8);
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 16px;
 }
@@ -218,9 +218,9 @@ body {
   bottom: -80px; right: -80px;
 }
 
-/* ═══════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 /* NEW STYLES FOR FEATURES    */
-/* ═══════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 /* Auth page layout */
 .auth-page {
@@ -255,7 +255,7 @@ body {
   top: calc(100% + 8px);
   right: 0;
   background: rgba(26,26,46,0.95);
-  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(16px);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 6px;
@@ -288,7 +288,7 @@ body {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -361,7 +361,7 @@ body {
   min-width: 280px;
   max-width: 400px;
   background: rgba(26,26,46,0.95);
-  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(16px);
   border: 1px solid var(--border);
   color: var(--text-primary);
   font-size: 0.88rem;
