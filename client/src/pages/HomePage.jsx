@@ -62,10 +62,10 @@ const HomePage = () => {
           src="/Syllabus2Success.png"
           alt="Syllabus2Success"
           style={{
-            height: '90px',
+            height: '160px',
             width: 'auto',
             objectFit: 'contain',
-            marginBottom: '28px',
+            marginBottom: '32px',
             filter: 'drop-shadow(0 4px 24px rgba(99,102,241,0.30))',
             animation: 'fadeInUp 0.6s ease forwards',
           }}
@@ -234,7 +234,7 @@ const HomePage = () => {
           <img
             src="/Syllabus2Success.png"
             alt="Syllabus2Success"
-            style={{ height: '60px', width: 'auto', objectFit: 'contain', marginBottom: '20px' }}
+            style={{ height: '90px', width: 'auto', objectFit: 'contain', marginBottom: '24px' }}
           />
           <h2 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '12px' }}>
             Ready to study smarter?
@@ -267,7 +267,7 @@ const HomePage = () => {
         <img
           src="/Syllabus2Success.png"
           alt="Syllabus2Success"
-          style={{ height: '32px', width: 'auto', objectFit: 'contain', opacity: 0.7 }}
+          style={{ height: '50px', width: 'auto', objectFit: 'contain', opacity: 0.8 }}
         />
         <span>© 2026 Syllabus2Success · Built with ❤️ using NVIDIA NIM AI & MERN Stack</span>
       </footer>

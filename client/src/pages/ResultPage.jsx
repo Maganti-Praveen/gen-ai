@@ -57,7 +57,7 @@ const ResultPage = () => {
             <img
               src="/Syllabus2Success.png"
               alt="Syllabus2Success"
-              style={{ height: '44px', width: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 2px 10px rgba(99,102,241,0.3))' }}
+              style={{ height: '70px', width: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 4px 14px rgba(99,102,241,0.3))' }}
             />
             <h1 style={{ fontSize: '1.8rem', fontWeight: 800, margin: 0 }}>
               Your <span className="gradient-text">Study Plan</span> is Ready!

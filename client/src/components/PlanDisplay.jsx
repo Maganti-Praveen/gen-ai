@@ -5,7 +5,9 @@ const PlanDisplay = ({ plan, planId, daysAvailable }) => {
   const [localPlan, setLocalPlan] = useState(plan);
 
   const completedCount = localPlan.filter((d) => d.completed).length;
-  const progressPercent = Math.round((completedCount / localPlan.length) * 100);
+  const progressPercent = localPlan.length > 0
+    ? Math.round((completedCount / localPlan.length) * 100)
+    : 0;
 
   const handleToggle = async (idx) => {
     const updated = localPlan.map((day, i) =>

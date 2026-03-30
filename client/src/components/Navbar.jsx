@@ -24,7 +24,7 @@ const Navbar = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          height: '68px',
+          height: '90px',
         }}
       >
         {/* Logo */}
@@ -33,7 +33,7 @@ const Navbar = () => {
             src="/Syllabus2Success.png"
             alt="Syllabus2Success"
             style={{
-              height: '48px',
+              height: '70px',
               width: 'auto',
               objectFit: 'contain',
               filter: 'drop-shadow(0 0 8px rgba(99,102,241,0.25))',
@@ -41,7 +41,7 @@ const Navbar = () => {
             }}
             onMouseEnter={(e) => {
               e.target.style.filter = 'drop-shadow(0 0 14px rgba(99,102,241,0.5))';
-              e.target.style.transform = 'scale(1.04)';
+              e.target.style.transform = 'scale(1.08)';
             }}
             onMouseLeave={(e) => {
               e.target.style.filter = 'drop-shadow(0 0 8px rgba(99,102,241,0.25))';

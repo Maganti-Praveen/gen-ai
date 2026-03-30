@@ -13,7 +13,7 @@ timeout /t 3 /nobreak > nul
 
 echo.
 echo Starting Frontend Dev Server (port 5173)...
-start "Frontend" cmd /k "cd /d c:\AMMU\Project\client && npm run dev"
+start "Frontend" cmd /k "cd /d c:\AMMU\Project\client && npm run dev -- --host"
 
 echo Waiting for frontend to initialize...
 timeout /t 4 /nobreak > nul

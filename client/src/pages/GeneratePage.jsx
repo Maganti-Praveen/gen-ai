@@ -36,7 +36,7 @@ const GeneratePage = () => {
         <img
           src="/Syllabus2Success.png"
           alt="Syllabus2Success"
-          style={{ height: '72px', width: 'auto', objectFit: 'contain', marginBottom: '18px', filter: 'drop-shadow(0 4px 18px rgba(99,102,241,0.3))' }}
+          style={{ height: '110px', width: 'auto', objectFit: 'contain', marginBottom: '24px', filter: 'drop-shadow(0 4px 18px rgba(99,102,241,0.3))' }}
         />
         <h1 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '10px' }}>
           Generate Your <span className="gradient-text">Study Plan</span>

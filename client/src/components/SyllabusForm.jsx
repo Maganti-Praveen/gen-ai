@@ -40,7 +40,8 @@ const SyllabusForm = ({ onSubmit, loading }) => {
       return;
     }
     if (!examDate) { alert('Please select your exam date.'); return; }
-    if (hoursPerDay < 1 || hoursPerDay > 16) { alert('Hours per day must be between 1 and 16.'); return; }
+    const hours = Number(hoursPerDay);
+    if (isNaN(hours) || hours < 1 || hours > 16) { alert('Hours per day must be between 1 and 16.'); return; }
 
     if (inputMode === 'file') {
       const formData = new FormData();

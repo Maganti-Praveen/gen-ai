@@ -13,11 +13,11 @@ const Loader = ({ message = 'AI is generating your study plan...' }) => {
       }}
     >
       {/* Animated logo */}
-      <div style={{ position: 'relative', width: '100px', height: '100px' }}>
+      <div style={{ position: 'relative', width: '150px', height: '150px' }}>
         <div
           style={{
-            width: '100px',
-            height: '100px',
+            width: '150px',
+            height: '150px',
             borderRadius: '50%',
             background: 'rgba(26,26,46,0.9)',
             display: 'flex',
@@ -30,7 +30,7 @@ const Loader = ({ message = 'AI is generating your study plan...' }) => {
           <img
             src="/Syllabus2Success.png"
             alt="Syllabus2Success"
-            style={{ width: '80px', height: '80px', objectFit: 'contain' }}
+            style={{ width: '130px', height: '130px', objectFit: 'contain' }}
           />
         </div>
         {/* Spinning ring */}
