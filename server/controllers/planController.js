@@ -1,10 +1,10 @@
-const OpenAI = require('openai');
 const crypto = require('crypto');
 const multer = require('multer');
 const StudyPlan = require('../models/StudyPlan');
 const User = require('../models/User');
 const { buildPrompt } = require('../utils/aiPrompt');
 const { extractTextFromPDF } = require('../utils/pdfParser');
+const { callAI } = require('../utils/aiClient');
 
 // Multer — memory storage for file uploads
 const upload = multer({
@@ -20,12 +20,6 @@ const upload = multer({
       cb(new Error('Only PDF and TXT files are allowed'), false);
     }
   },
-});
-
-// Initialize NVIDIA NIM client (OpenAI-compatible)
-const client = new OpenAI({
-  apiKey: process.env.NVIDIA_API_KEY,
-  baseURL: 'https://integrate.api.nvidia.com/v1',
 });
 
 /**
@@ -47,6 +41,7 @@ const parseAIJson = (rawText) => {
 
 /**
  * POST /api/generate-plan (protected)
+ * Uses NVIDIA NIM with 10s timeout → Groq fallback
  */
 const generatePlan = [
   upload.single('file'),
@@ -86,9 +81,8 @@ const generatePlan = [
         difficulty: difficulty || 'medium',
       });
 
-      // Call NVIDIA NIM API
-      const completion = await client.chat.completions.create({
-        model: 'meta/llama-3.3-70b-instruct',
+      // Call AI with NVIDIA → Groq fallback
+      const { text: rawText, provider } = await callAI({
         messages: [
           { role: 'system', content: 'You are an expert academic planner. You MUST return ONLY a valid JSON array. No markdown, no explanation, no extra text — just the raw JSON array.' },
           { role: 'user', content: prompt },
@@ -97,13 +91,11 @@ const generatePlan = [
         max_tokens: 4096,
       });
 
-      const rawText = completion.choices[0]?.message?.content?.trim() || '';
-
       let plan;
       try {
         plan = parseAIJson(rawText);
       } catch (parseErr) {
-        console.error('NVIDIA raw response:', rawText);
+        console.error(`${provider} raw response:`, rawText);
         return res.status(500).json({ error: 'AI returned invalid JSON. Please try again.', raw: rawText });
       }
 
@@ -135,6 +127,7 @@ const generatePlan = [
         id: savedPlan._id,
         plan: savedPlan.plan,
         daysAvailable,
+        provider,
       });
     } catch (err) {
       console.error('generatePlan error:', err);
@@ -145,6 +138,7 @@ const generatePlan = [
 
 /**
  * POST /api/extract-topics (protected)
+ * Uses NVIDIA NIM with 10s timeout → Groq fallback
  */
 const extractTopics = async (req, res) => {
   try {
@@ -153,8 +147,7 @@ const extractTopics = async (req, res) => {
 
     syllabus = sanitize(syllabus);
 
-    const completion = await client.chat.completions.create({
-      model: 'meta/llama-3.3-70b-instruct',
+    const { text: rawText, provider } = await callAI({
       messages: [
         {
           role: 'system',
@@ -167,7 +160,6 @@ const extractTopics = async (req, res) => {
       max_tokens: 4096,
     });
 
-    const rawText = completion.choices[0]?.message?.content?.trim() || '';
     let topics;
     try {
       topics = parseAIJson(rawText);
@@ -175,7 +167,7 @@ const extractTopics = async (req, res) => {
       return res.status(500).json({ error: 'AI returned invalid JSON. Please try again.', raw: rawText });
     }
 
-    return res.json(topics);
+    return res.json({ ...topics, provider });
   } catch (err) {
     console.error('extractTopics error:', err);
     return res.status(500).json({ error: err.message });
@@ -184,14 +176,14 @@ const extractTopics = async (req, res) => {
 
 /**
  * POST /api/study-tips (protected)
+ * Uses NVIDIA NIM with 10s timeout → Groq fallback
  */
 const getStudyTips = async (req, res) => {
   try {
     const { topic, difficulty } = req.body;
     if (!topic) return res.status(400).json({ error: 'Topic is required' });
 
-    const completion = await client.chat.completions.create({
-      model: 'meta/llama-3.3-70b-instruct',
+    const { text: rawText, provider } = await callAI({
       messages: [
         {
           role: 'system',
@@ -204,7 +196,6 @@ const getStudyTips = async (req, res) => {
       max_tokens: 2048,
     });
 
-    const rawText = completion.choices[0]?.message?.content?.trim() || '';
     let tips;
     try {
       tips = parseAIJson(rawText);
@@ -212,7 +203,7 @@ const getStudyTips = async (req, res) => {
       return res.status(500).json({ error: 'AI returned invalid JSON. Please try again.', raw: rawText });
     }
 
-    return res.json(tips);
+    return res.json({ ...tips, provider });
   } catch (err) {
     console.error('getStudyTips error:', err);
     return res.status(500).json({ error: err.message });
@@ -221,6 +212,7 @@ const getStudyTips = async (req, res) => {
 
 /**
  * POST /api/generate-quiz (protected)
+ * Uses NVIDIA NIM with 10s timeout → Groq fallback
  */
 const generateQuiz = async (req, res) => {
   try {
@@ -229,8 +221,7 @@ const generateQuiz = async (req, res) => {
       return res.status(400).json({ error: 'Topics array is required' });
     }
 
-    const completion = await client.chat.completions.create({
-      model: 'meta/llama-3.3-70b-instruct',
+    const { text: rawText, provider } = await callAI({
       messages: [
         {
           role: 'system',
@@ -243,7 +234,6 @@ const generateQuiz = async (req, res) => {
       max_tokens: 3000,
     });
 
-    const rawText = completion.choices[0]?.message?.content?.trim() || '';
     let quiz;
     try {
       quiz = parseAIJson(rawText);
@@ -251,7 +241,7 @@ const generateQuiz = async (req, res) => {
       return res.status(500).json({ error: 'AI returned invalid JSON. Please try again.', raw: rawText });
     }
 
-    return res.json(quiz);
+    return res.json({ ...quiz, provider });
   } catch (err) {
     console.error('generateQuiz error:', err);
     return res.status(500).json({ error: err.message });
